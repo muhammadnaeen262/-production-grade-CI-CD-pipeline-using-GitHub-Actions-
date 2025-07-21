@@ -56,6 +56,9 @@ jobs:
           docker stop $CONTAINER_NAME || true
           docker rm $CONTAINER_NAME || true
           docker run -d --name $CONTAINER_NAME -p 81:3000 $IMAGE_NAME:$IMAGE_TAG
+      - name: check the public IP
+        run: |
+          echo "Public IP of the server is: $(curl -s ifconfig.me)"
 
       - name: Notify deployment
         run: echo "🚀 Deployment to production server completed successfully."
